@@ -1,33 +1,36 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import Card from 'react-bootstrap/Card';
+import Badge from 'react-bootstrap/Badge';
 
 export class TodoItem extends Component {
     getStyle = () => {
        return{
            background: '#f4f4f4',
            padding: '10px',
+           margin: '10px',
            borderBottom: '1px #ccc dotted', 
            textDecoration: this.props.todo.completed ?
            'line-through' : 'none'
        }
     }
-
-
     render() {
 
-        const {id, title} = this.props.todo;
+        const {id, title, author, content} = this.props.todo;
         return (
-            <div style={this.getStyle()}>
-                <p>
-                <input type="checkbox" onChange={this.props.markComplete.bind(this,id)}/> {' '}
-                {title}
+            <Card style={this.getStyle()}>
+            <div>
+                <h3><Badge variant="dark">{title}</Badge></h3>
+                <Card.Subtitle className="mb-2 text-muted">By  {author}</Card.Subtitle>
+                <p>{content}</p>
                 <button onClick={this.props.delTodo.bind(this, id)} style = {btnStyle}>x</button>
-                </p>
+                <input type="checkbox" onChange={this.props.markComplete.bind(this,id)}/> {' '}
+
             </div>
+        </Card>
         )
     }
 }
-
 //Prop Type
 
 TodoItem.propTypes = {

@@ -1,35 +1,82 @@
 import React, { Component } from 'react'
+import Form from 'react-bootstrap/Form';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import InputGroup from 'react-bootstrap/InputGroup';
+import Button from 'react-bootstrap/Button';
+import Overlay from 'react-bootstrap/Overlay';
+import Card from 'react-bootstrap/Card';
+import Container from 'react-bootstrap/Container';
 
 export class AddTodo extends Component {
+    
 state = {
-    title: ''
+    title: '',
+    author: ' ',
+    content: ''
 }
 
 onSubmit = (e) => {
     e.preventDefault();
-    this.props.AddTodo(this.state.title);
-    this.setState({title: ''});
+    this.props.AddTodo(this.state.title, this.state.author, this.state.content);
+
+    this.setState({title: '', author: '', content: ''});
 }
 
 onChange = (e) => this.setState({[e.target.name]: [e.target.value] });
 
     render() {
         return (
-            <form onSubmit={this.onSubmit} style ={{display: 'flex'}}>
-                <input 
+            <form onSubmit={this.onSubmit}>
+            <Form.Group controlId="formBasicEmail" bg="light">  
+            <Form.Row>
+                <Col>
+                <InputGroup className="mb-3">
+                    <InputGroup.Prepend>
+                        <InputGroup.Text id="basic-addon1">Title:</InputGroup.Text>
+                    </InputGroup.Prepend>
+                        <Form.Control 
+                            type="text" 
+                            name ="title" 
+                            placeholder="title here"
+                            value={this.state.title}
+                            onChange={this.onChange}
+                        />
+                    </InputGroup>
+                </Col>
+                <Col>
+                <InputGroup className="mb-3">
+                    <InputGroup.Prepend>
+                        <InputGroup.Text id="basic-addon1">Author:</InputGroup.Text>
+                    </InputGroup.Prepend>
+                        <Form.Control 
+                            type="text" 
+                            name ="author" 
+                            placeholder="title here"
+                            value={this.state.author}
+                            onChange={this.onChange}
+                        />
+                    </InputGroup>
+                </Col>
+            </Form.Row>
+            <Form.Label>Your Conspiracy Theory: </Form.Label>
+                <Form.Control
+                    as="textarea"
                     type="text" 
-                    name ="title" 
-                    style = {{flex: '10', padding: '5px'}}
-                    placeholder="Add Todo..."
-                    value={this.state.title}
+                    name ="content" 
+                    placeholder="Despite 13% of the population..."
+                    value={this.state.content}
                     onChange={this.onChange}
                 />
-                <input 
+               
+               </Form.Group>
+                <Button  
+                    variant="danger"
                     type="submit" 
                     value="Submit"
                     className="btn"
                     style={{flex: '1'}}
-                />
+                >Submit</Button>
             </form>
         )
     }

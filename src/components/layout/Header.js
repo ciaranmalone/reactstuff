@@ -1,19 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Badge from 'react-bootstrap/Badge';
+import Jumbotron from 'react-bootstrap/Jumbotron';
 
 function Header() {
     return (
-        <header style={headerStyle}>
-            <h1>TodoList</h1>
+        <Jumbotron style={jumboStyle}>
+            <h1><Badge variant="warning">Conspiracy Theories</Badge></h1>
             <Link style={linkStyle} to="/">HOME</Link> | <Link style={linkStyle} to ="/about">ABOUT</Link>
-        </header>
+        </Jumbotron>
     )
-}
-const headerStyle = {
-    background: '#333',
-    color:'#fff',
-    textAlign: 'center',
-    padding: '10px'
 }
 
 const linkStyle = {
@@ -21,5 +17,9 @@ const linkStyle = {
     background: '#000000'
 
 }
+const jumboStyle = {
+    opacity: 0.8
+}
+
 
 export default Header;
