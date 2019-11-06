@@ -10,7 +10,7 @@ export class ConsItem extends Component {
            padding: '10px',
            margin: '10px',
            borderBottom: '1px #ccc dotted', 
-           textDecoration: this.props.item.completed ?
+           textDecoration: this.props.item.liked ?
            'line-through' : 'none'
        }
     }
@@ -31,7 +31,6 @@ export class ConsItem extends Component {
         )
     }
 }
-//Prop Type
 
 ConsItem.propTypes = {
     item: PropTypes.array.isRequired

@@ -3,6 +3,8 @@ import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
+import Badge from 'react-bootstrap/Badge';
+
 
 export class AddItem extends Component {
     
@@ -55,7 +57,7 @@ onChange = (e) => this.setState({[e.target.name]: [e.target.value] });
                     </InputGroup>
                 </Col>
             </Form.Row>
-            <Form.Label>Your Conspiracy Theory: </Form.Label>
+            <Form.Label><Badge variant="dark">Your Conspiracy Theory:</Badge> </Form.Label>
                 <Form.Control
                     as="textarea"
                     type="text" 

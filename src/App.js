@@ -59,6 +59,7 @@ class App extends Component{
   
 delItem = (id) => {
   this.setState({items: [...this.state.items.filter(item => item.id !==id)] });
+
 }
 
 //Add item
@@ -75,6 +76,9 @@ AddItem = (title, author ,content) => {
 }
 
 render(){
+  var reverse =this.state.items.reverse();
+  console.log(reverse);
+
     return (
       <Router>
       <div className="App" style={bodyStyle} >
@@ -97,5 +101,6 @@ render(){
     ); 
   }
 }
+
 
 export default App;
