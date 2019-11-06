@@ -40,5 +40,17 @@
     "@storybook/addons": "^5.2.5",
     "@storybook/react": "^5.2.5",
     "babel-loader": "^8.0.6"
-  }
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ciaranmalone/reactstuff.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ciaranmalone/reactstuff/issues"
+  },
+  "homepage": "https://github.com/ciaranmalone/reactstuff#readme"
 }

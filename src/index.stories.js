@@ -16,10 +16,16 @@ storiesOf("App",module).add("AddItem", () => (
 ));
 
 storiesOf("App",module).add("Items", () => (
-        <Items items={this.state.items} 
-              markComplete={this.markComplete} 
-              delItem ={this.delItem} />));
+    <React.Fragment>
+    <AddItem AddItem={this.AddItem}/>
+    <Items items={this.state.items} 
+    markComplete={this.markComplete} 
+    delItem ={this.delItem} />
+    </React.Fragment> 
+));
 
 storiesOf("App",module).add("About", () => (
     <About/>
 ));
+
+

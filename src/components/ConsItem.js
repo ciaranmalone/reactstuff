@@ -1,15 +1,13 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import Badge from 'react-bootstrap/Badge';
 
 export class ConsItem extends Component {
     getStyle = () => {
        return{
-           background: '#f4f4f4',
            padding: '10px',
            margin: '10px',
-           borderBottom: '1px #ccc dotted', 
            textDecoration: this.props.item.liked ?
            'line-through' : 'none'
        }
