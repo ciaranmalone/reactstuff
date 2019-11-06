@@ -1,14 +1,10 @@
 import React, { Component } from 'react'
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
-import Overlay from 'react-bootstrap/Overlay';
-import Card from 'react-bootstrap/Card';
-import Container from 'react-bootstrap/Container';
 
-export class AddTodo extends Component {
+export class AddItem extends Component {
     
 state = {
     title: '',
@@ -18,7 +14,7 @@ state = {
 
 onSubmit = (e) => {
     e.preventDefault();
-    this.props.AddTodo(this.state.title, this.state.author, this.state.content);
+    this.props.AddItem(this.state.title, this.state.author, this.state.content);
 
     this.setState({title: '', author: '', content: ''});
 }
@@ -82,4 +78,4 @@ onChange = (e) => this.setState({[e.target.name]: [e.target.value] });
     }
 }
 
-export default AddTodo
+export default AddItem

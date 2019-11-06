@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import {BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
 import Header from './components/layout/Header';
-import Todos from './components/Todos';
-import AddTodo from './components/AddTodo';
-import About from './components/pages/About';
+import Items from './components/Items.js';
+import AddItem from './components/AddItem.js';
+import About from './components/pages/About.js';
 import uuid from 'uuid';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -15,7 +15,7 @@ const bodyStyle = {
 
 class App extends Component{
   state = {
-    todos: [
+    items: [
       {
         id: uuid.v4(),
         title: 'Wait, how tall is Peppa Pig? ',
@@ -49,31 +49,30 @@ class App extends Component{
   }
 
   markComplete = (id) => {
-    this.setState({todos: this.state.todos.map(todo => {
-      if(todo.id === id){
-        todo.liked = !todo.liked
+    this.setState({items: this.state.items.map(item => {
+      if(item.id === id){
+        item.liked = !item.liked
       }
-      return todo;
+      return item;
     })})
   }
   
-delTodo = (id) => {
-  this.setState({todos: [...this.state.todos.filter(todo => todo.id !==id)] });
+delItem = (id) => {
+  this.setState({items: [...this.state.items.filter(item => item.id !==id)] });
 }
 
-//Add todo
+//Add item
 
-AddTodo = (title, author ,content) => {
-  const newTodo = {
+AddItem = (title, author ,content) => {
+  const newItem = {
     id: uuid.v4(),
     author,
     title,
     content,
     liked: false
   }
-    this.setState({todos: [...this.state.todos, newTodo]})
+    this.setState({items: [...this.state.items, newItem]})
 }
-
 
 render(){
     return (
@@ -83,10 +82,10 @@ render(){
           <Header/>
           <Route exact path="/" render={props => (
             <React.Fragment>
-              <AddTodo AddTodo={this.AddTodo}/>
-              <Todos todos={this.state.todos} 
+              <AddItem AddItem={this.AddItem}/>
+              <Items items={this.state.items} 
               markComplete={this.markComplete} 
-              delTodo ={this.delTodo} />
+              delItem ={this.delItem} />
             </React.Fragment> 
           )}  />
 
@@ -95,7 +94,6 @@ render(){
         </div>
         </div>
       </Router>
-
     ); 
   }
 }
