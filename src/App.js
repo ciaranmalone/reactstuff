@@ -8,13 +8,15 @@ import AddItem from './components/AddItem.js';
 import About from './components/pages/About.js';
 import uuid from 'uuid';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {useEffect } from 'react';
 
-//Styles
 const bodyStyle = {
   backgroundImage: `url(${'https://background-tiles.com/overview/red/patterns/large/1056.png'})`,
 }
 
+
 class App extends Component{
+
   state = {
     items: [
       {
@@ -31,7 +33,7 @@ class App extends Component{
         title: 'The absolute size of Gru',
         author: 'Yuri',
         content: `First according to the height of a Minion (which is 3.5 feet on average) Gru is 4 minions tall, which means he is a godly size of 14 feet tall. Second if any of you remember the original Despicable Me, you Know there is a scene when Vector kidnaps the three girls and shoots a series of heat-seeking misses at Gru, he then dodge them all. According to the speed of an average ballistic missile (1900 mph) and the size of the missile according to his ankle size, Gru can perceive and move at such a speed that the missiles only move 9.5 miles per hour, 0.5% of their original speed. Plus after this Gru punches a shark and it is paralyzed meaning its spine is probably shattered, to remind you it would require a force greater than 3,000 newtons to fracture the spine. That’s equal to the impact created by a 500-pound car crashing into a wall at 30 miles per hour. I rest my case.`,
-        liked: true
+        liked: false
       },
       {
         id: uuid.v4(),
@@ -46,7 +48,8 @@ class App extends Component{
         　˚　　　　　　　　　　　　　　　　　　　　　ﾟ　　　　　.　　　　　　　　　　　　　　　. 　　 　 🌎 ‍ ‍ ‍ ‍ ‍ ‍ ‍ ‍ ‍ ‍ ,　 　　　　　　　　　　　　　　* .　　　　　 　　　　　　　　　　　　　　.　　　　　　　　　　 ✦ 　　　　   　 　　　˚　　　　　　　　　　　　　　* . 　　　　　　　　　　.　　　　　　　　　　　　　. 　　　　　　　　　　　　　　　　       　   　　　　 　　　　　　　　　　　　　　　　       　   　　　　　　　　　　　　　　　　       　    ✦ 　   　　　,　　　　　　　　　　　    🛸 　　　　 　　,　　　 ‍ ‍ ‍ ‍ 　 　　　　　　　　　　　　.　　　　　 　　 　　　.　　　　　　　　　　　　　 　           　　　　　　　　　　　　　　　　　　　˚　　　 　   　　　　,　　　　　　　　　　　       　    　　　　　　　　　　　　　　　　.　　　  `,
         liked: false
       },
-    ]
+    ],
+    displayedItems: []
   }
 
   markComplete = (id) => {
@@ -62,17 +65,20 @@ delItem = (id) => {
   this.setState({items: [...this.state.items.filter(item => item.id !==id)] });
 }
 
+showAll = (e)=> {
+  this.setState({
+   displayedItems: this.state.items
+  })
+}
+
 showLikes = (e) => {
   const newItems = this.state.items.filter(function(newitem){
     return newitem.liked === true;
   });
   this.setState({
-    items: newItems
+    displayedItems: newItems
   })
 }
-
-
-//Add item
 
 AddItem = (title, author ,content) => {
   const newItem = {
@@ -84,19 +90,26 @@ AddItem = (title, author ,content) => {
   }
     this.setState({items: [...this.state.items, newItem]})
 }
+RunOnce = (e) => {
+  useEffect(() => {
+    this.showAll();
+  }, []);
+}
 
 render(){
-  
-    return (
+  return (
+      
       <div className="App" style={bodyStyle} >
+      
       <Router>
-        <Navigation handleShowLikes={this.showLikes} />
+
+        <Navigation handleShowLikes={this.showLikes} handleShowAll={this.showAll}/>
         <Header/>
         <div className="container">
           <Route exact path="/" render={props => (
             <React.Fragment>
               <AddItem AddItem={this.AddItem}/>
-              <Items items={this.state.items} 
+              <Items items={this.state.displayedItems} 
               markComplete={this.markComplete} 
               delItem ={this.delItem} />
             </React.Fragment> 
@@ -109,6 +122,5 @@ render(){
     ); 
   }
 }
-
 
 export default App;

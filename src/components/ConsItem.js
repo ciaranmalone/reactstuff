@@ -6,10 +6,10 @@ import Badge from 'react-bootstrap/Badge';
 export class ConsItem extends Component {
     getStyle = () => {
        return{
-           padding: '10px',
-           margin: '10px',
-           textDecoration: this.props.item.liked ?
-           'line-through' : 'none'
+        padding: '10px',
+        margin: '10px',
+        backgroundColor: this.props.item.liked ===false ?
+            'backgroundColor' : ' #FFC14C'    
        }
     }
     render() {
