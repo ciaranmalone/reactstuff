@@ -2,4 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+var divStyle = {
+    backgroundColor: '#FFC14C'
+}
+
+ReactDOM.render(<App style={divStyle}/>, document.getElementById('root'));

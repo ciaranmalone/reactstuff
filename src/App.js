@@ -12,8 +12,9 @@ import {useEffect } from 'react';
 
 const bodyStyle = {
   backgroundImage: `url(${'https://background-tiles.com/overview/red/patterns/large/1056.png'})`,
+  height: '100%'
 }
-
+document.body.style = 'background-image: url("https://background-tiles.com/overview/red/patterns/large/1056.png");';
 
 class App extends Component{
 
@@ -88,7 +89,12 @@ AddItem = (title, author ,content) => {
     content,
     liked: false
   }
+
     this.setState({items: [...this.state.items, newItem]})
+
+    this.showAll()
+
+
 }
 RunOnce = (e) => {
   useEffect(() => {
